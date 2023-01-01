@@ -43,8 +43,8 @@ onSaveAssignment() {
   this.assignment.dateDeRendu = this.dateDeRendu;
   this.assignmentsService
     .updateAssignment(this.assignment)
-    .subscribe((message) => {
-      console.log(message);
+    .subscribe((reponse) => {
+      console.log("Réponse du serveur " + reponse.message);
 
       // navigation vers la home page
       this.router.navigate(['/home']);

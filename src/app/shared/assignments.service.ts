@@ -1,73 +1,74 @@
 import { Injectable } from '@angular/core';
 import { Assignment } from '../assignments/assignment.model';
-import { Observable, of } from 'rxjs';
 import { LoggingService } from './logging.service';
+import { HttpClient } from '@angular/common/http';
+import { Observable, tap, catchError, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AssignmentsService {
-  assignments:Assignment[] = [
-    {
-      id:1,
-      nom: "Devoir Angular à rendre",
-      dateDeRendu: new Date('2022-10-10'),
-      rendu: false
-    },
-    {
-      id:2,
-      nom: "Devoir JAVA à rendre",
-      dateDeRendu: new Date('2022-09-10'),
-      rendu: true
-    },
-    {
-      id:3,
-      nom: "Devoir BD à rendre",
-      dateDeRendu: new Date('2022-12-01'),
-      rendu: false
-    }
-    ];
+  assignments:Assignment[] = [];
 
-  constructor(private logginService:LoggingService) { }
+  constructor(private logginService:LoggingService, private http:HttpClient) { }
+
+  url="http://localhost:8010/api/assignments";
 
   getAssignments():Observable<Assignment[]> {
-    return of(this.assignments);
+    return this.http.get<Assignment[]>(this.url);
+    // return of(this.assignments);
   }
 
   // renvoie comme Observable l'assignment dont l'id est passé
   // en paramètre, ou undefined s'il n'existe pas
   getAssignment(id:number):Observable<Assignment|undefined> {
-    const a:Assignment|undefined = this.assignments.find(a => a.id === id);
-    if(a)
-    console.log("getAssignment id= " + id + " nom = " + a.nom)
-    return of(a);
+    return this.http.get<Assignment>(this.url + "/" + id)
+    .pipe(
+      tap(a => {
+        console.log("tap : " +a.nom)
+      }),
+      catchError(this.handleError<Assignment>(`getAssignment(id=${id})`))
+    );
   }
 
-  addAssignment(assignment:Assignment):Observable<string> {
-    this.assignments.push(assignment);
+  private handleError<T>(operation: any, result?: T) {
+    return (error: any): Observable<T> => {
+      console.log(error); // pour afficher dans la console
+      console.log(operation + ' a échoué ' + error.message);
+ 
+      return of(result as T);
+    }
+ };
+ 
 
+  addAssignment(assignment:Assignment):Observable<any> {
     this.logginService.log(assignment.nom, "ajouté !");
+    return this.http.post<Assignment>(this.url, assignment);
 
-    return of("Assignment ajouté");
   }
 
-  updateAssignment(assignment:Assignment):Observable<string> {
+  updateAssignment(assignment:Assignment):Observable<any> {
     // On n'a besoin de rien faire pour le moment, puisque l'assignment est passé par référence
     // et que l'objet est modifié dans le tableau
     // Plus tard on utilisera un Web Service distant...
-    this.logginService.log(assignment.nom, "modifié !");
-
-    return of("Assignment modifié");
+    
+    return this.http.put<Assignment>(this.url, assignment);
   }
 
-  deleteAssignement(assignment:Assignment) :Observable<string> {
-    let pos = this.assignments.indexOf(assignment);
-    this.assignments.splice(pos, 1);
+  deleteAssignement(assignment:Assignment) :Observable<any> {
+    //let pos = this.assignments.indexOf(assignment);
+    //this.assignments.splice(pos, 1);
 
     this.logginService.log(assignment.nom, "supprimé !");
 
 
-    return of("Assignment supprimé")
+    //return of("Assignment supprimé")
+    let deleteURI = this.url +"/" + assignment._id;
+    return this.http.delete<Assignment>(deleteURI);
+  }
+
+  getNewId():number{
+    return Math.floor(Math.random() * 10000);
   }
 
 }

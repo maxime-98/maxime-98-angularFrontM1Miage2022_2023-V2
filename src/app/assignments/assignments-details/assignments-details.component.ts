@@ -37,8 +37,8 @@ export class AssignmentsDetailsComponent implements OnInit {
 
     this.assignmentService
       .updateAssignment(this.assignmentTransmis)
-      .subscribe((message) => {
-        console.log(message);
+      .subscribe((reponse) => {
+        console.log("Réponse du serveur : " + reponse.message);
         this.router.navigate(['/home']);
       });
   }
@@ -48,8 +48,8 @@ export class AssignmentsDetailsComponent implements OnInit {
 
     this.assignmentService
       .deleteAssignement(this.assignmentTransmis)
-      .subscribe((message) => {
-        console.log(message);
+      .subscribe(reponse => {
+        console.log("Réponse du server : " + reponse.message);
         this.assignmentTransmis = undefined;
         this.router.navigate(['/home']);
       });

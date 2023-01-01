@@ -23,6 +23,7 @@ import { AddAssignmentComponent } from './assignments/add-assignment/add-assignm
 import { RouterModule, Routes } from '@angular/router';
 import { EditAssignmentComponent } from './assignments/edit-assignment/edit-assignment.component';
 import { AuthGuard } from './shared/auth.guard';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes:Routes = [
   {path: '', component: AssignmentsComponent},
@@ -50,7 +51,7 @@ const routes:Routes = [
     MatInputModule, MatFormFieldModule,
     MatDatepickerModule, MatNativeDateModule, MatListModule,
     MatCardModule, MatCheckboxModule, MatSlideToggleModule,
-    FormsModule,
+    FormsModule,HttpClientModule,
     RouterModule.forRoot(routes)
   ],
   providers: [],

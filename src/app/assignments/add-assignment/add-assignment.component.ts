@@ -23,13 +23,14 @@ export class AddAssignmentComponent implements OnInit {
     const newAssignment = new Assignment();
     newAssignment.nom = this.nomDevoir;
     newAssignment.dateDeRendu = this.dateDeRendu;
+    newAssignment.id=this.assignmentsService.getNewId();
     newAssignment.rendu = false;
 
     //this.assignments.push(newAssignment);
     //this.nouvelAssignment.emit(newAssignment);
     this.assignmentsService.addAssignment(newAssignment)
-      .subscribe(message => {
-        console.log(message);
+      .subscribe(reponse => {
+        console.log(reponse.message);
       });
   }
 }

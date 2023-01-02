@@ -9,6 +9,15 @@
   </div>
 
   <h1>Liste des devoirs à rendre (assignments) :</h1>
+  <p>Nombre total d'assignments : {{totalDocs}}</p>
+  <p>Nombre total de pages : {{totalPages}}</p>
+  <div class="paginationBtn">
+    <button mat-raised-button color="primary">Prémière</button>&nbsp;
+    <button mat-raised-button color="primary">Précédente</button>&nbsp;
+    <button mat-raised-button color="primary">Suivante</button>&nbsp;
+    <button mat-raised-button color="primary">Dernière</button>
+</div>
+
   <mat-list *ngFor="let a of assignments">
     <nav><a routerLink="/assignment/{{a.id}}">
         <h3 mat-subheader>{{a.dateDeRendu|date}}</h3>

@@ -1,12 +1,34 @@
 <h1>
   <nav>
-    <a routerLink="/home">{{title}}</a>
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <h4>Assignments</h4>
+        <button mat-button (click)="opened=!opened" ><mat-icon>menu</mat-icon></button>
+        <button mat-button><mat-icon>home</mat-icon><a routerLink="/home">Home</a></button>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <mat-sidenav-container>
+      <mat-sidenav [(opened)]="opened" mode="push">
+        <button mat-button><h2>Connection</h2></button>
+      </mat-sidenav>
+      <mat-sidenav-content>
+        <br>
+        <mat-slide-toggle color="primary" (click)="login()">Login</mat-slide-toggle>
+        <!-- <br>
+        <br>
+        <button mat-flat-button color="primary" (click)="innitiliserLaBaseAvecDonnesDeTest()">Peupler BD</button>
+        -->
+        <router-outlet></router-outlet>
+
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+    <!-- <a routerLink="/home">{{title}}</a> -->
   </nav>
 </h1>
-<mat-slide-toggle color="primary" (click)="login()">Login</mat-slide-toggle>
-<!-- <br>
+<!-- <mat-slide-toggle color="primary" (click)="login()">Login</mat-slide-toggle>
+-- <br>
 <br>
  <button mat-flat-button color="primary" (click)="innitiliserLaBaseAvecDonnesDeTest()">Peupler BD</button>
--->
 
-<router-outlet></router-outlet>
+
+<router-outlet></router-outlet> -->

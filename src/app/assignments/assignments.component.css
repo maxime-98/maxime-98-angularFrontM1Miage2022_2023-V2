@@ -5,3 +5,9 @@
 .AjouterBtn {
   align-self: flex-end;
 }
+.paginationBtn {
+  align-self: flex-start;
+}
+table {
+  width: 100%;
+}

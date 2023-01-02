@@ -21,6 +21,9 @@ export class AssignmentsComponent implements OnInit {
   prevPage: number	= 	0;
   nextPage: number	= 	2;
 
+  //Pour l'affichage en table
+  displayedColumns: string[] = ['demo-id', 'demo-nom', 'demo-dateDeRendu', 'demo-rendu'];
+
   assignments!: Assignment[];
 
   assignmentSelectionne!: Assignment;

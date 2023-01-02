@@ -11,11 +11,12 @@
   <h1>Liste des devoirs à rendre (assignments) :</h1>
   <p>Nombre total d'assignments : {{totalDocs}}</p>
   <p>Nombre total de pages : {{totalPages}}</p>
+  <p>assignments par page : <input type="range" min=1 max=100 value=10 (change)="getAssignments()" [(ngModel)]="limit"> {{limit}}</p>
   <div class="paginationBtn">
-    <button mat-raised-button color="primary">Prémière</button>&nbsp;
-    <button mat-raised-button color="primary">Précédente</button>&nbsp;
-    <button mat-raised-button color="primary">Suivante</button>&nbsp;
-    <button mat-raised-button color="primary">Dernière</button>
+    <button mat-raised-button color="primary" (click)="premierePage()" [disabled]="page===1">Prémière</button>&nbsp;
+    <button mat-raised-button color="primary" (click)="pagePrecedente()"[disabled]=!hasPrevPage>Précédente</button>&nbsp;
+    <button mat-raised-button color="primary" (click)="pageSuivante()" [disabled]=!hasNextPage>Suivante</button>&nbsp;
+    <button mat-raised-button color="primary" (click)="dernierePage()" [disabled]="page===totalPages">Dernière</button>
 </div>
 
   <mat-list *ngFor="let a of assignments">

@@ -28,6 +28,10 @@ export class AssignmentsComponent implements OnInit {
   constructor(private assignmentsService: AssignmentsService) {}
 
   ngOnInit(): void {
+    this.getAssignments();
+  }
+
+  getAssignments(){
     this.assignmentsService
       .getAssignmentsPagine(this.page, this.limit)
       .subscribe((data) => {
@@ -50,5 +54,29 @@ export class AssignmentsComponent implements OnInit {
 
   onAssignmentClicke(assignment: Assignment) {
     this.assignmentSelectionne = assignment;
+  }
+
+  pageSuivante(){
+    if(this.hasNextPage){
+      this.page = this.nextPage;
+      this.getAssignments();
+    }
+  }
+
+  pagePrecedente(){
+    if(this.hasPrevPage){
+      this.page = this.prevPage;
+      this.getAssignments();
+    }
+  }
+
+  dernierePage(){
+    this.page = this.totalPages;
+    this.getAssignments();
+  }
+
+  premierePage(){
+    this.page = 1;
+    this.getAssignments();
   }
 }

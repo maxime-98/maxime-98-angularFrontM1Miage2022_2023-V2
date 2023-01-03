@@ -16,7 +16,7 @@
         EDIT
       </button>
        </a></nav>
-      <button mat-flat-button color="warn" (click)="onDelete()">
+      <button mat-flat-button color="warn" (click)="onDelete()" [disabled]="!isAdmin()">
         DELETE
       </button>
     </div>

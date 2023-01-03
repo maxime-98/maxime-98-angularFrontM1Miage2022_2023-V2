@@ -5,3 +5,11 @@ mat-sidenav{
     width: 200px;
     background-color: #eee;
 }
+.login{
+    position:relative;
+    left: 50%;
+}
+.disconnect{
+    position:relative;
+    left: 70%;
+}

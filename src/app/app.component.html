@@ -5,16 +5,40 @@
         <h4>Assignments</h4>
         <button mat-button (click)="opened=!opened" ><mat-icon>menu</mat-icon></button>
         <button mat-button><mat-icon>home</mat-icon><a routerLink="/home">Home</a></button>
+        
+      <form class="login" *ngIf="!isLoggedIn(); else nonsoumis" >
+        <mat-form-field>
+          <input matInput type="email"  appearance="fill"  [(ngModel)]="email" placeholder="email" name="email">
+        </mat-form-field>&nbsp;
+
+    
+        <mat-form-field>
+          <input matInput type="password"  appearance="fill"  [(ngModel)]="password"  placeholder="password" name="password">
+        </mat-form-field>&nbsp;&nbsp;
+        <mat-slide-toggle color="primary" (click)="isAdmin()">Admin</mat-slide-toggle>&nbsp;
+
+        <button class="connect" mat-flat-button color="#0000" (click)="connection()" >connect</button>
+     </form>
+     <ng-template #nonsoumis>
+      <button mat-flat-button color="red" (click)="disconnection()" class="disconnect">disconnect</button>
+    </ng-template>
+
+
+
       </mat-toolbar-row>
-    </mat-toolbar>
-    <mat-sidenav-container>
-      <mat-sidenav [(opened)]="opened" mode="push">
-        <button mat-button><h2>Connection</h2></button>
-      </mat-sidenav>
+        </mat-toolbar>
+          <mat-sidenav-container>
+          <mat-sidenav [(opened)]="opened" mode="push">
+          <div class="AjouterBtn">
+            <a routerLink="/add">
+              <button mat-button [disabled]="!isAdmin2()"><h2>Add Assignment</h2></button>
+            </a>
+          </div>
+        </mat-sidenav>
       <mat-sidenav-content>
-        <br>
+        <!-- 
         <mat-slide-toggle color="primary" (click)="login()">Login</mat-slide-toggle>
-        <!-- <br>
+        <br>
         <br>
         <button mat-flat-button color="primary" (click)="innitiliserLaBaseAvecDonnesDeTest()">Peupler BD</button>
         -->

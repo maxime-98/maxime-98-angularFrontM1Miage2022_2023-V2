@@ -8,6 +8,7 @@ import { User } from '../assignments/user.model';
 export class AuthService {
   loggedIn=false;
   admin = false;
+  loggedId!: number;
 
   users=[
     {

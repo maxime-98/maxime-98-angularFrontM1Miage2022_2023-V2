@@ -18,10 +18,6 @@ export class AppComponent {
   isUserAdmin = false;
   userTransmis?:User ;
 
-
-
-
-
   constructor(private authService:AuthService, private router:Router, private assignmentService:AssignmentsService) {}
 
   login() {

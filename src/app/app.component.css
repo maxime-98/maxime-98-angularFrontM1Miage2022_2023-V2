@@ -1,15 +1,28 @@
-mat-sidenave-container{
-    height: calc(205vh - 11vh);
+mat-sidenav-container{
+    width: 100%;
+}
+mat-sidenav a {
+    text-decoration: none!important;
+    color: #000;
+}
+mat-sidenav div:hover {
+    background-color: rgba(211, 211, 211, 0.5);
+}
+mat-sidenav-content {
+    height: calc(100vh - 64px);
 }
 mat-sidenav{
     width: 200px;
     background-color: #eee;
 }
-.login{
-    position:relative;
-    left: 50%;
+
+mat-toolbar button {
+    width: auto!important;
+    text-align: center!important;
 }
-.disconnect{
-    position:relative;
-    left: 70%;
+
+footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
 }

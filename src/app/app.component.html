@@ -8,11 +8,11 @@
       <form class="login">
         <div class="" *ngIf="!isLoggedIn(); else nonsoumis">
           <mat-form-field>
-            <input matInput type="email"  appearance="fill"  [(ngModel)]="email" placeholder="email" name="email">
+            <input matInput type="email"  appearance="fill"  [(ngModel)]="email" placeholder="Email" name="email">
           </mat-form-field>&nbsp;
   
           <mat-form-field>
-            <input matInput type="password"  appearance="fill"  [(ngModel)]="password"  placeholder="password" name="password">
+            <input matInput type="password"  appearance="fill"  [(ngModel)]="password"  placeholder="Password" name="password">
           </mat-form-field>&nbsp;&nbsp;
           <mat-slide-toggle color="primary" (click)="isAdmin()">Admin</mat-slide-toggle>&nbsp;
   
